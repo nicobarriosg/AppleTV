@@ -36,30 +36,21 @@
   }
 </style>
 
-<div class="container mt-5"><h2 style="color: rgb(0, 0, 0);">Peliculas</h2></div>
+<div class="container mt-5"><h2 style="color: white;">Peliculas</h2></div>
 
-<div class="row mx-auto">
+<!-- mi_app/templates/mi_app/peliculas_list.html -->
+<div class="row">
   {% for pelicula in peliculas %}
-  <div class="col-md-4 mb-4">
-    <div class="card mx-auto">
-      {% if pelicula.imagen %}
-      <img src="{{ pelicula.imagen.url }}" class="card-img-top" alt="{{ pelicula.nombre }}" style="max-height: 100%;">
-      {% else %}
-      <img src="{% static 'images/not-found.png' %}" class="card-img-top" alt="Sin imagen" style="max-height: 100%;">
-      {% endif %}
-      <div class="card-body text-center">
-        <h5 class="card-title">{{ pelicula.nombre}}</h5>
-        <p class="card-text"><strong>Género:</strong> {{ pelicula.get_genero_display }}</p>
-        <p class="card-text"><strong>Clasificación:</strong> {{ pelicula.get_clasificacion_display }}</p>
-
-        <div class="mx-auto ta-c10">
-          <a href="{% url 'pelicula-detail' id=pelicula.id %}" class="btn btn-info w-100">Ver</a>
-        </div>
+      <div class="col-md-3">
+          <div class="mb-4">
+              <a href="{% url 'pelicula-detail' pelicula.pk %}">
+                <img src="{{ pelicula.imagen }}" alt="{{ pelicula.nombre }}" width="369" height="208">
+              </a>
+          </div>
       </div>
-    </div>
-  </div>
   {% endfor %}
 </div>
+
 
 
 {% endblock %}

@@ -31,10 +31,16 @@ class Pelicula(models.Model):
         ('18+', '18+'),
     ]
 
+    TIPO_CHOICES = [
+        ('pelicula', 'Película'),
+        ('serie', 'Serie'),
+    ]
+
     sucursal = models.CharField(max_length=100, choices=SUCURSAL_CHOICES)
     nombre = models.CharField(max_length=50, help_text='Nombre de la película')
+    tipo = models.CharField(max_length=50, choices=TIPO_CHOICES, help_text='Pelicula o Serie')
     genero = models.CharField(max_length=20, choices=GENERO_CHOICES,
-                              help_text='Género de la película', blank=False)
+                            help_text='Género de la película', blank=False)
     clasificacion = models.CharField(
         max_length=8, choices=CLASIFICACION_CHOICES, help_text='Clasificación de la película', blank=False)
     duracion = models.PositiveIntegerField(
@@ -51,7 +57,9 @@ class Pelicula(models.Model):
     hora_exhibicion = models.TimeField(
         help_text='Hora de la exhibición', blank=False)
     valor_ticket = models.PositiveIntegerField(help_text='Valor del ticket')
-    imagen = models.ImageField(upload_to='peliculas/')
+    imagen = models.URLField()  # Aquí se almacena la URL de la imagen
+
+
 
     def __str__(self):
         return self.nombre
