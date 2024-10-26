@@ -3,6 +3,10 @@ from .models import Pelicula
 from .forms import PeliculaForm
 from django.contrib import messages
 
+def pagina_principal(request):
+    peliculas_drama = Pelicula.objects.filter(genero='Drama')
+    return render(request, 'main.html', {'peliculas_drama': peliculas_drama})
+
 
 def PeliculaListView(request):
 
@@ -47,7 +51,7 @@ def eliminar_pelicula(request, id):
     # Agrega un mensaje de confirmación
     messages.success(
         request, f'Se ha eliminado a {pelicula.nombre}')
-    return redirect('pelicula-list')
+    return redirect('pagina_principal')
 
 def editar_pelicula(request, id):
     pelicula = get_object_or_404(Pelicula, id=id)
@@ -56,7 +60,7 @@ def editar_pelicula(request, id):
         if form.is_valid():
             form.save()
             print("Formulario válido. Película guardada.")
-            return redirect('pelicula-list')
+            return redirect('pagina_principal')
         else:
             print("Formulario no válido. Errores:", form.errors)
     else:

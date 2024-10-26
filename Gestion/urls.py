@@ -8,7 +8,7 @@ from django.conf import settings
 urlpatterns = [
 
     path('admin/', admin.site.urls),
-    path('', views.PeliculaListView, name='pelicula-list'),
+    path('', views.pagina_principal, name='pagina_principal'),
     path('agregarpelicula/', views.agregar_pelicula, name='agregarpelicula'),
     path('<int:id>/', views.pelicula_detail, name='pelicula-detail'),
     path('editar/<int:id>/', views.editar_pelicula, name='editar-pelicula'),

@@ -41,17 +41,15 @@
 <!-- mi_app/templates/mi_app/peliculas_list.html -->
 <div class="row">
   {% for pelicula in peliculas %}
-      <div class="col-md-3">
-          <div class="mb-4">
+      <div class="col-md-4 mb-4">  <!-- Aumenta el tamaño de la columna para hacer que las imágenes sean más grandes -->
+          <div class="image-container">
               <a href="{% url 'pelicula-detail' pelicula.pk %}">
-                <img src="{{ pelicula.imagen }}" alt="{{ pelicula.nombre }}" width="369" height="208">
+                <img src="{{ pelicula.imagen }}" alt="{{ pelicula.nombre }}" class="img-fluid" style="margin-bottom: 20px;">
               </a>
           </div>
       </div>
   {% endfor %}
 </div>
-
-
 
 {% endblock %}
 
