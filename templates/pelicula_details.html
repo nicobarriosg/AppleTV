@@ -15,7 +15,7 @@
             <p class="card-text"><strong>Tipo:</strong> {{ pelicula.tipo }}</p>
             <p class="card-text"><strong>Género:</strong> {{ pelicula.get_genero_display }}</p>
             <p class="card-text"><strong>Clasificación:</strong> {{ pelicula.get_clasificacion_display }}</p>
-            <p class="card-text"><strong>Duración:</strong> {{ pelicula.duracion }} minutos</p>
+            <p class="card-text"><strong>Año:</strong> {{ pelicula.año }}</p>
             <p class="card-text"><strong>Reseña:</strong> {{ pelicula.resena }}</p>
         </div>
     </div>
@@ -24,7 +24,7 @@
         <a href="{% url 'editar-pelicula' id=pelicula.id %}" class="btn btn-warning">Editar</a>
         <a href="{% url 'eliminar-pelicula' id=pelicula.id %}" class="btn btn-danger"
             onclick="return confirm('¿Estás seguro de que deseas eliminar a {{ pelicula.nombre }}?')">Eliminar</a>
-       
+
         <a href="{% url 'pagina_principal' %}" class="btn btn-primary">Volver al Listado de Películas</a>
     </div>
 </div>

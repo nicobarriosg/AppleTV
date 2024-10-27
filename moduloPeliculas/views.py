@@ -1,11 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Pelicula
+from .models import Pelicula, Serie
 from .forms import PeliculaForm
 from django.contrib import messages
 
 def pagina_principal(request):
     peliculas_drama = Pelicula.objects.filter(genero='Drama')
-    return render(request, 'main.html', {'peliculas_drama': peliculas_drama})
+    series_drama = Serie.objects.filter(genero='Drama')
+    return render(request, 'main.html', {
+        'peliculas_drama': peliculas_drama,
+        'series_drama': series_drama
+    })
+
+
 
 
 def PeliculaListView(request):
