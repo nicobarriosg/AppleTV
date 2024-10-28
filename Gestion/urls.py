@@ -14,7 +14,7 @@ urlpatterns = [
     path('editar/<int:id>/', views.editar_pelicula, name='editar-pelicula'),
     path('eliminar/<int:id>/', views.eliminar_pelicula, name='eliminar-pelicula'),
     path('gestionpeliculas/', views.PeliculaListCrud, name='gestion_peliculas'),
-
+    
 ]
 
 
