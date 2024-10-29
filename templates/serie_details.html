@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mb-4" style="color: white;">Detalle de Serie: {{ serie.nombre }}</h2>
+
+    <div class="card" style="width: 600px;">
+        <div class="card-body">
+            {% if serie.imagen %}
+            <img src="{{ serie.imagen }}" alt="{{ serie.nombre }}" width="369" height="208">
+            {% else %}
+            <p class="mb-4">No hay imagen disponible.</p>
+            {% endif %}
+            <p class="card-text"><strong>Tipo:</strong> {{ serie.tipo }}</p>
+            <p class="card-text"><strong>Género:</strong> {{ serie.get_genero_display }}</p>
+            <p class="card-text"><strong>Clasificación:</strong> {{ serie.get_clasificacion_display }}</p>
+            <p class="card-text"><strong>Año:</strong> {{ serie.año }}</p>
+            <p class="card-text"><strong>Reseña:</strong> {{ serie.resena }}</p>
+        </div>
+    </div>
+
+    <div class="container mt-5">
+        <a href="{% url 'editar-serie' id=serie.id %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'eliminar-serie' id=serie.id %}" class="btn btn-danger"
+            onclick="return confirm('¿Estás seguro de que deseas eliminar a {{ serie.nombre }}?')">Eliminar</a>
+
+        <a href="{% url 'pagina_principal' %}" class="btn btn-primary">Volver al Listado de Series</a>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+<!-- Header de la Página 
 <div id="dramaCarousel" class="carousel slide w-100" data-ride="carousel">
     <div class="carousel-inner">
         {% for pelicula in peliculas_drama %}
@@ -32,8 +35,6 @@
     </a>
 </div>
 
-
-
 <div id="serieCarousel" class="carousel slide w-100" data-ride="carousel">
     <div class="carousel-inner">
         {% for serie in series_drama %}
@@ -43,7 +44,7 @@
             {% endif %}
 
             <div class="col-md-3">
-                <a href="{% url 'pelicula-detail' serie.id %}">
+                <a href="{% url 'serie-detail' serie.id %}">
                     <img src="{{ serie.imagen }}" class="d-block w-100 img-fluid" alt="{{ serie.nombre }}" style="height: auto; object-fit: cover; margin: 10px;">
                 </a>
             </div>
@@ -63,6 +64,259 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
+</div>
+-->
+
+<!-- SERIES -->
+<div class="container-fluid mt-5">
+    <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
+    <h2 class="titulosCarrusel">Todas las Series</h2>
+    <div id="todasSeriesCarousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for serie in series %}
+                {% if forloop.counter == 1 or forloop.counter|add:"-1"|divisibleby:"4" %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="d-flex justify-content-around w-100">
+                {% endif %}
+
+                <div class="col-md-3">
+                    <a href="{% url 'serie-detail' serie.id %}">
+                        <img src="{{ serie.imagen }}" class="d-block w-100 img-fluid" alt="{{ serie.nombre }}" style="height: auto; object-fit: cover; margin: 10px;">
+                    </a>
+                </div>
+
+                {% if forloop.counter|divisibleby:"4" or forloop.last %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#todasSeriesCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#todasSeriesCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- ULTIMOS ESTRENOS -->
+<div class="container-fluid mt-5">
+    <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
+    <h2 class="titulosCarrusel">Últimos Estrenos 2024</h2>
+    <div id="ultimosEstrenosCarousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for estreno in ultimos_estrenos %}
+                {% if forloop.counter == 1 or forloop.counter|add:"-1"|divisibleby:"4" %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="d-flex justify-content-around w-100">
+                {% endif %}
+
+                <div class="col-md-3">
+                    <a href="{% if estreno|default_if_none:'' == 'Pelicula' %}{% url 'pelicula-detail' estreno.id %}{% else %}{% url 'serie-detail' estreno.id %}{% endif %}">
+                        <img src="{{ estreno.imagen }}" class="d-block w-100 img-fluid" alt="{{ estreno.nombre }}" style="height: auto; object-fit: cover; margin: 10px;">
+                    </a>
+                </div>
+
+                {% if forloop.counter|divisibleby:"4" or forloop.last %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#ultimosEstrenosCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#ultimosEstrenosCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- NUESTRO ASOMBROSO PLANETA -->
+<div class="container-fluid mt-5">
+    <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
+    <h2 class="titulosCarrusel">Nuestro Asombroso Planeta</h2>
+    <div id="documentalesCarousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for doc in documentales %}
+                {% if forloop.counter == 1 or forloop.counter|add:"-1"|divisibleby:"4" %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="d-flex justify-content-around w-100">
+                {% endif %}
+
+                <div class="col-md-3">
+                    <a href="{% if doc.tipo == 'Pelicula' %}{% url 'pelicula-detail' doc.id %}{% else %}{% url 'serie-detail' doc.id %}{% endif %}">
+                        <img src="{{ doc.imagen }}" class="d-block w-100 img-fluid" alt="{{ doc.nombre }}" style="height: auto; object-fit: cover; margin: 10px;">
+                    </a>
+                </div>
+
+                {% if forloop.counter|divisibleby:"4" or forloop.last %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#documentalesCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#documentalesCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- TODAS LAS PELICULAS -->
+<div class="container-fluid mt-5">
+    <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
+    <h2 class="titulosCarrusel">Todas las Películas</h2>
+    <div id="todasPeliculasCarousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for pelicula in todas_peliculas %}
+                {% if forloop.counter == 1 or forloop.counter|add:"-1"|divisibleby:"4" %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="d-flex justify-content-around w-100">
+                {% endif %}
+
+                <div class="col-md-3">
+                    <a href="{% url 'pelicula-detail' pelicula.id %}">
+                        <img src="{{ pelicula.imagen }}" class="d-block w-100 img-fluid" alt="{{ pelicula.nombre }}" style="height: auto; object-fit: cover; margin: 10px;">
+                    </a>
+                </div>
+
+                {% if forloop.counter|divisibleby:"4" or forloop.last %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#todasPeliculasCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#todasPeliculasCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- COMEDIA: TODAS LAS SERIES -->
+<div class="container-fluid mt-5">
+    <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
+    <h2 class="titulosCarrusel">Comedia: Todas las Series</h2>
+    <div id="seriesComediaCarousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for serie in series_comedia %}
+                {% if forloop.counter == 1 or forloop.counter|add:"-1"|divisibleby:"4" %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="d-flex justify-content-around w-100">
+                {% endif %}
+
+                <div class="col-md-3">
+                    <a href="{% url 'serie-detail' serie.id %}">
+                        <img src="{{ serie.imagen }}" class="d-block w-100 img-fluid" alt="{{ serie.nombre }}" style="height: auto; object-fit: cover; margin: 10px;">
+                    </a>
+                </div>
+
+                {% if forloop.counter|divisibleby:"4" or forloop.last %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#seriesComediaCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#seriesComediaCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- NO FICCION: TODAS LAS SERIES -->
+<div class="container-fluid mt-5">
+    <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
+    <h2 class="titulosCarrusel">No Ficción: Todas las Series</h2>
+    <div id="seriesNoFiccionCarousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for serie in series_no_ficcion %}
+                {% if forloop.counter == 1 or forloop.counter|add:"-1"|divisibleby:"4" %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="d-flex justify-content-around w-100">
+                {% endif %}
+
+                <div class="col-md-3">
+                    <a href="{% url 'serie-detail' serie.id %}">
+                        <img src="{{ serie.imagen }}" class="d-block w-100 img-fluid" alt="{{ serie.nombre }}" style="height: auto; object-fit: cover; margin: 10px;">
+                    </a>
+                </div>
+
+                {% if forloop.counter|divisibleby:"4" or forloop.last %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#seriesNoFiccionCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#seriesNoFiccionCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
+<!-- TODO PARA TODA LA FAMILIA -->
+<div class="container-fluid mt-5">
+    <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
+    <h2 class="titulosCarrusel">Todo para Toda la Familia</h2>
+    <div id="contenidoFamiliarCarousel" class="carousel slide w-100" data-ride="carousel">
+        <div class="carousel-inner">
+            {% for contenido in contenido_familiar %}
+                {% if forloop.counter == 1 or forloop.counter|add:"-1"|divisibleby:"4" %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <div class="d-flex justify-content-around w-100">
+                {% endif %}
+
+                <div class="col-md-3">
+                    <a href="{% if contenido.tipo == 'Pelicula' %}{% url 'pelicula-detail' contenido.id %}{% else %}{% url 'serie-detail' contenido.id %}{% endif %}">
+                        <img src="{{ contenido.imagen }}" class="d-block w-100 img-fluid" alt="{{ contenido.nombre }}" style="height: auto; object-fit: cover; margin: 10px;">
+                    </a>
+                </div>
+
+                {% if forloop.counter|divisibleby:"4" or forloop.last %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+
+        <a class="carousel-control-prev" href="#contenidoFamiliarCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#contenidoFamiliarCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>
 
 

@@ -15,7 +15,12 @@ urlpatterns = [
     path('eliminar/<int:id>/', views.eliminar_pelicula, name='eliminar-pelicula'),
     path('gestionpeliculas/', views.PeliculaListCrud, name='gestion_peliculas'),
     
-]
+    path('agregarserie/', views.agregar_serie, name='agregar_serie'),
+    path('serie/<int:id>/', views.serie_detail, name='serie-detail'),
+    path('editarserie/<int:id>/', views.editar_serie, name='editar-serie'),
+    path('eliminarserie/<int:id>/', views.eliminar_serie, name='eliminar-serie'),
+    path('gestionseries/', views.SerieListCrud, name='gestion_series'),
+    ]
 
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

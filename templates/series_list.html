@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  .card {
+    height: 550px;
+    width: 300px;
+    transition: transform 0.3s ease;
+  }
+
+  .card:hover {
+    transform: scale(1.05);
+  }
+
+  .card img {
+    max-height: 100%;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-body h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-body .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+</style>
+
+<div class="container mt-5"><h2 style="color: white;">Series</h2></div>
+
+<div class="row">
+  {% for serie in series %}
+      <div class="col-md-4 mb-4">
+          <div class="image-container">
+              <a href="{% url 'serie-detail' serie.pk %}">
+                <img src="{{ serie.imagen }}" alt="{{ serie.nombre }}" class="img-fluid" style="margin-bottom: 20px;">
+              </a>
+          </div>
+      </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

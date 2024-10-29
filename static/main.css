@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'apple';
+    src: url('../media/font/MYRIADPRO-BOLD.OTF') format('truetype');
+}
+
+.titulosCarrusel {
+    font-family: 'apple', sans-serif;
+    color: #ffffff;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.23;
+}
