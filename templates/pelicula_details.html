@@ -1,22 +1,27 @@
-<!-- templates/pelicula_detail.html -->
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h2 class="mb-4" style="color: white;">Detalle de Película: {{ pelicula.nombre }}</h2>
+
+    {% if pelicula.imagenbanner %}
+    <div class="header-image" style="background-image: url('{{ pelicula.imagenbanner }}'); height: 900px; width: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; position: relative; overflow: hidden;">
+        <div class="resena-text" style="position: absolute; bottom: 60px; left: 10%; right: 10%; color: white; background-color: rgba(0, 0, 0, 0.5); padding: 10px; text-align: center; max-width: 80%; margin: 0 auto;">
+            <strong>Reseña:</strong> {{ pelicula.resena }}
+        </div>
+        <div class="info-text" style="position: absolute; bottom: 20px; left: 10%; right: 10%; color: white; text-align: center; max-width: 80%; margin: 0 auto;">
+            <strong>Género:</strong> {{ pelicula.get_genero_display }} |
+            <strong>Año:</strong> {{ pelicula.año }} |
+            <strong>Clasificación:</strong> {{ pelicula.get_clasificacion_display }}
+        </div>
+    </div>
+    {% else %}
+    <p class="mb-4">No hay imagen disponible.</p>
+    {% endif %}
+
+    <h2 class="mb-4 mt-4" style="color: white;">Detalle de Película: {{ pelicula.nombre }}</h2>
 
     <div class="card" style="width: 600px;">
         <div class="card-body">
-            {% if pelicula.imagen %}
-            <img src="{{ pelicula.imagen }}" alt="{{ pelicula.nombre }}" width="369" height="208">
-            {% else %}
-            <p class="mb-4">No hay imagen disponible.</p>
-            {% endif %}
             <p class="card-text"><strong>Tipo:</strong> {{ pelicula.tipo }}</p>
-            <p class="card-text"><strong>Género:</strong> {{ pelicula.get_genero_display }}</p>
-            <p class="card-text"><strong>Clasificación:</strong> {{ pelicula.get_clasificacion_display }}</p>
-            <p class="card-text"><strong>Año:</strong> {{ pelicula.año }}</p>
-            <p class="card-text"><strong>Reseña:</strong> {{ pelicula.resena }}</p>
         </div>
     </div>
 
@@ -27,10 +32,5 @@
 
         <a href="{% url 'pagina_principal' %}" class="btn btn-primary">Volver al Listado de Películas</a>
     </div>
-</div>
-
 
 {% endblock %}
-
-
-

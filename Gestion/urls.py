@@ -10,10 +10,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.pagina_principal, name='pagina_principal'),
     path('agregarpelicula/', views.agregar_pelicula, name='agregarpelicula'),
-    path('<int:id>/', views.pelicula_detail, name='pelicula-detail'),
     path('editar/<int:id>/', views.editar_pelicula, name='editar-pelicula'),
     path('eliminar/<int:id>/', views.eliminar_pelicula, name='eliminar-pelicula'),
     path('gestionpeliculas/', views.PeliculaListCrud, name='gestion_peliculas'),
+    path('pelicula/<int:id>/', views.pelicula_detail, name='pelicula-detail'),
+
     
     path('agregarserie/', views.agregar_serie, name='agregar_serie'),
     path('serie/<int:id>/', views.serie_detail, name='serie-detail'),

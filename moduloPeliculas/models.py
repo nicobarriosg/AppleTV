@@ -36,6 +36,7 @@ class Pelicula(models.Model):
     duracion = models.PositiveIntegerField(help_text='Duración de la película en minutos')
     resena = models.TextField(blank=True, help_text='Breve reseña del contenido de la película')
     imagen = models.URLField()  # Aquí se almacena la URL de la imagen
+    imagenbanner = models.URLField(blank=True, help_text='URL del banner de la imagen')  # Nuevo campo para la imagen del banner
 
     def __str__(self):
         return self.nombre
@@ -76,6 +77,7 @@ class Serie(models.Model):
     capitulos = models.PositiveIntegerField(help_text='Número de capítulos por temporada')
     resena = models.TextField(blank=True, help_text='Breve reseña del contenido de la serie')
     imagen = models.URLField()  # Aquí se almacena la URL de la imagen
+    imagenbanner = models.URLField(blank=True, help_text='URL del banner de la imagen')  # Nuevo campo para la imagen del banner
 
     def __str__(self):
         return self.nombre
