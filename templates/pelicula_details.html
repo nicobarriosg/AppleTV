@@ -3,27 +3,39 @@
 {% block content %}
 
     {% if pelicula.imagenbanner %}
-    <div class="header-image" style="background-image: url('{{ pelicula.imagenbanner }}'); height: 900px; width: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; position: relative; overflow: hidden;">
-        <div class="resena-text" style="position: absolute; bottom: 60px; left: 10%; right: 10%; color: white; background-color: rgba(0, 0, 0, 0.5); padding: 10px; text-align: center; max-width: 80%; margin: 0 auto;">
-            <strong>Reseña:</strong> {{ pelicula.resena }}
-        </div>
-        <div class="info-text" style="position: absolute; bottom: 20px; left: 10%; right: 10%; color: white; text-align: center; max-width: 80%; margin: 0 auto;">
-            <strong>Género:</strong> {{ pelicula.get_genero_display }} |
-            <strong>Año:</strong> {{ pelicula.año }} |
-            <strong>Clasificación:</strong> {{ pelicula.get_clasificacion_display }}
+    <div class="header-image" style="position: relative; height: 900px; width: 100%; overflow: hidden; text-align: center;">
+        <!-- Imagen en formato <img> para mejor control del tamaño -->
+        <img src="{{ pelicula.imagenbanner }}" alt="Imagen de la película" style="width: 90%; height: 100%; object-fit: cover; object-position: center; margin: 0 auto;">
+    
+        <!-- Nombre de la imagen en la parte superior izquierda -->
+        {% if pelicula.imagenname %}
+        <img src="{{ pelicula.imagenname }}" alt="Nombre de la imagen" style="position: absolute; top: 20px; left: 170px; max-width: 200%; width: auto; height: auto;">
+        {% endif %}
+    
+        <!-- Capa con el degradado oscuro ajustada a la imagen -->
+        <div style="position: absolute; bottom: 0; left: 5%; width: 90%; height: 100%; background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); pointer-events: none;"></div>
+    
+        <div class="text-and-buttons" style="position: absolute; bottom: 20px; left: 10%; display: flex; align-items: flex-start; gap: 20px;">
+            <div class="buttons-container" style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn btn-light" style="width: 300px;">Empezar a ver</button>
+                <button class="btn btn-light" style="width: 300px;">+ Agregar a la lista</button>
+            </div>
+            <div class="resena-and-info" style="color: white; padding: 10px; text-align: left; max-width: 1000px;">
+                <div class="resena-text">
+                    {{ pelicula.resena }}
+                </div>
+                <div class="info-text" style="margin-top: 10px;">
+                    {{ pelicula.get_genero_display }} |
+                    {{ pelicula.año }} |
+                    {{ pelicula.duracion }} min |
+                    {{ pelicula.get_clasificacion_display }}
+                </div>
+            </div>
         </div>
     </div>
     {% else %}
     <p class="mb-4">No hay imagen disponible.</p>
     {% endif %}
-
-    <h2 class="mb-4 mt-4" style="color: white;">Detalle de Película: {{ pelicula.nombre }}</h2>
-
-    <div class="card" style="width: 600px;">
-        <div class="card-body">
-            <p class="card-text"><strong>Tipo:</strong> {{ pelicula.tipo }}</p>
-        </div>
-    </div>
 
     <div class="container mt-5">
         <a href="{% url 'editar-pelicula' id=pelicula.id %}" class="btn btn-warning">Editar</a>

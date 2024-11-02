@@ -1,21 +1,46 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="container">
-    <h2 class="mb-4" style="color: white;">Detalle de Serie: {{ serie.nombre }}</h2>
+
+    {% if serie.imagenbanner %}
+    <div class="header-image" style="position: relative; height: 900px; width: 100%; overflow: hidden; text-align: center;">
+        <!-- Imagen en formato <img> para mejor control del tamaño -->
+        <img src="{{ serie.imagenbanner }}" alt="Imagen de la serie" style="width: 90%; height: 100%; object-fit: cover; object-position: center; margin: 0 auto;">
+        
+        {% if serie.imagenname %}
+        <img src="{{ serie.imagenname }}" alt="Nombre de la imagen" style="position: absolute; top: 20px; left: 170px; max-width: 200%; width: auto; height: auto;">
+        {% endif %}
+        
+        <!-- Capa con el degradado oscuro ajustada a la imagen -->
+        <div style="position: absolute; bottom: 0; left: 5%; width: 90%; height: 100%; background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); pointer-events: none;"></div>
+
+        <div class="text-and-buttons" style="position: absolute; bottom: 20px; left: 10%; display: flex; align-items: flex-start; gap: 20px;">
+            <div class="buttons-container" style="display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn btn-light" style="width: 300px;">Empezar a ver</button>
+                <button class="btn btn-light" style="width: 300px;">+ Agregar a la lista</button>
+            </div>
+            <div class="resena-and-info" style="color: white; padding: 10px; text-align: left; max-width: 1000px;">
+                <div class="resena-text">
+                    {{ serie.resena }}
+                </div>
+                <div class="info-text" style="margin-top: 10px;">
+                    {{ serie.get_genero_display }} |
+                    {{ serie.año }} |
+                    {{ serie.duracion }} min |
+                    {{ serie.get_clasificacion_display }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <p class="mb-4">No hay imagen disponible.</p>
+    {% endif %}
+
+    <h2 class="mb-4 mt-4" style="color: white;">Detalle de Serie: {{ serie.nombre }}</h2>
 
     <div class="card" style="width: 600px;">
         <div class="card-body">
-            {% if serie.imagen %}
-            <img src="{{ serie.imagen }}" alt="{{ serie.nombre }}" width="369" height="208">
-            {% else %}
-            <p class="mb-4">No hay imagen disponible.</p>
-            {% endif %}
             <p class="card-text"><strong>Tipo:</strong> {{ serie.tipo }}</p>
-            <p class="card-text"><strong>Género:</strong> {{ serie.get_genero_display }}</p>
-            <p class="card-text"><strong>Clasificación:</strong> {{ serie.get_clasificacion_display }}</p>
-            <p class="card-text"><strong>Año:</strong> {{ serie.año }}</p>
-            <p class="card-text"><strong>Reseña:</strong> {{ serie.resena }}</p>
         </div>
     </div>
 
@@ -26,6 +51,5 @@
 
         <a href="{% url 'pagina_principal' %}" class="btn btn-primary">Volver al Listado de Series</a>
     </div>
-</div>
 
 {% endblock %}

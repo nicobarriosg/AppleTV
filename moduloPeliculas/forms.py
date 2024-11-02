@@ -4,7 +4,7 @@ from .models import Pelicula, Serie
 class PeliculaForm(forms.ModelForm):
     class Meta:
         model = Pelicula
-        fields = ['nombre', 'genero', 'clasificacion', 'año', 'duracion', 'resena', 'imagen', 'imagenbanner']
+        fields = ['nombre', 'genero', 'clasificacion', 'año', 'duracion', 'resena', 'imagen', 'imagenbanner', 'imagenname']
 
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de la película'}),
@@ -15,12 +15,13 @@ class PeliculaForm(forms.ModelForm):
             'resena': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Breve reseña del contenido de la película'}),
             'imagen': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'URL de la imagen'}),
             'imagenbanner': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'URL del banner de la imagen'}),
+            'imagenname': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'URL del nombre del archivo de la imagen'}),
         }
 
 class SerieForm(forms.ModelForm):
     class Meta:
         model = Serie
-        fields = ['nombre', 'genero', 'clasificacion', 'año', 'temporadas', 'capitulos', 'resena', 'imagen', 'imagenbanner']
+        fields = ['nombre', 'genero', 'clasificacion', 'año', 'temporadas', 'capitulos', 'resena', 'imagen', 'imagenbanner', 'imagenname']
 
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de la serie'}),
@@ -32,4 +33,5 @@ class SerieForm(forms.ModelForm):
             'resena': forms.Textarea(attrs={'class': 'form-control', 'rows': 3, 'placeholder': 'Breve reseña del contenido de la serie'}),
             'imagen': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'URL de la imagen'}),
             'imagenbanner': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'URL del banner de la imagen'}),
+            'imagenname': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'URL del nombre del archivo de la imagen'}),
         }
