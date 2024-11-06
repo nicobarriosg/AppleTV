@@ -26,7 +26,7 @@
                 <div class="info-text" style="margin-top: 10px;">
                     {{ serie.get_genero_display }} |
                     {{ serie.año }} |
-                    {{ serie.duracion }} min |
+                    {{ serie.temporadas }} temp |
                     {{ serie.get_clasificacion_display }}
                 </div>
             </div>
@@ -36,20 +36,11 @@
     <p class="mb-4">No hay imagen disponible.</p>
     {% endif %}
 
-    <h2 class="mb-4 mt-4" style="color: white;">Detalle de Serie: {{ serie.nombre }}</h2>
-
-    <div class="card" style="width: 600px;">
-        <div class="card-body">
-            <p class="card-text"><strong>Tipo:</strong> {{ serie.tipo }}</p>
-        </div>
-    </div>
-
     <div class="container mt-5">
+        {% if user.is_staff %}
         <a href="{% url 'editar-serie' id=serie.id %}" class="btn btn-warning">Editar</a>
         <a href="{% url 'eliminar-serie' id=serie.id %}" class="btn btn-danger"
             onclick="return confirm('¿Estás seguro de que deseas eliminar a {{ serie.nombre }}?')">Eliminar</a>
-
-        <a href="{% url 'pagina_principal' %}" class="btn btn-primary">Volver al Listado de Series</a>
+        {% endif %}
     </div>
-
 {% endblock %}

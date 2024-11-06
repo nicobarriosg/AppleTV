@@ -1,4 +1,4 @@
-from django.urls import path, re_path
+from django.urls import path, re_path, include  # Agrega 'include'
 from django.contrib import admin
 from moduloPeliculas import views
 from django.views.static import serve
@@ -21,8 +21,13 @@ urlpatterns = [
     path('editarserie/<int:id>/', views.editar_serie, name='editar-serie'),
     path('eliminarserie/<int:id>/', views.eliminar_serie, name='eliminar-serie'),
     path('gestionseries/', views.SerieListCrud, name='gestion_series'),
-    ]
+    
+    path('register/', views.register_view, name='register'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('logout/', views.logout_view, name='logout'),
 
+    ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
