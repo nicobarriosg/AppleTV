@@ -38,11 +38,9 @@
     {% endif %}
 
     <div class="container mt-5">
-        {% if user.is_staff %}
-            <a href="{% url 'editar-pelicula' id=pelicula.id %}" class="btn btn-warning">Editar</a>
-            <a href="{% url 'eliminar-pelicula' id=pelicula.id %}" class="btn btn-danger"
-                onclick="return confirm('¿Estás seguro de que deseas eliminar a {{ pelicula.nombre }}?')">Eliminar</a>
-        {% endif %}
+        <a href="{% url 'editar-pelicula' id=pelicula.id %}" class="btn btn-light">Editar</a>
+        <a href="{% url 'eliminar-pelicula' id=pelicula.id %}" class="btn btn-outline-danger"
+            onclick="return confirm('¿Estás seguro de que deseas eliminar a {{ pelicula.nombre }}?')">Eliminar</a>
     </div>
 
 {% endblock %}

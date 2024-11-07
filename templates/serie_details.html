@@ -26,7 +26,7 @@
                 <div class="info-text" style="margin-top: 10px;">
                     {{ serie.get_genero_display }} |
                     {{ serie.año }} |
-                    {{ serie.temporadas }} temp |
+                    {{ serie.duracion }} min |
                     {{ serie.get_clasificacion_display }}
                 </div>
             </div>
@@ -37,10 +37,9 @@
     {% endif %}
 
     <div class="container mt-5">
-        {% if user.is_staff %}
-        <a href="{% url 'editar-serie' id=serie.id %}" class="btn btn-warning">Editar</a>
-        <a href="{% url 'eliminar-serie' id=serie.id %}" class="btn btn-danger"
+        <a href="{% url 'editar-serie' id=serie.id %}" class="btn btn-light">Editar</a>
+        <a href="{% url 'eliminar-serie' id=serie.id %}" class="btn btn-outline-danger"
             onclick="return confirm('¿Estás seguro de que deseas eliminar a {{ serie.nombre }}?')">Eliminar</a>
-        {% endif %}
     </div>
+
 {% endblock %}
