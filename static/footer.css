@@ -1,0 +1,31 @@
+@font-face {
+    font-family: 'apple';
+    src: url('/media/font/MYRIADPRO-REGULAR.OTF') format('truetype');
+}
+
+.text1 {
+    font-family: 'apple', sans-serif;
+    font-size: 56px;
+    font-weight: bold;
+    color: black;
+}
+
+.landing-devices__apple {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /* Alinea los elementos al centro horizontalmente */
+    gap: 20px;  /* Espacio entre figuras */
+}
+
+.landing-devices__apple figure {
+    display: flex;
+    flex-direction: column;  /* Alinea el SVG y el texto verticalmente */
+    align-items: center;  /* Centra el SVG y el texto horizontalmente */
+    text-align: center;  /* Asegura que el texto esté centrado */
+}
+
+.landing-devices__apple figcaption {
+    margin-top: 10px;  /* Espacio entre el SVG y el texto */
+    color: black;  /* Color del texto */
+    font-size: 14px;  /* Ajusta el tamaño del texto según lo que necesites */
+}

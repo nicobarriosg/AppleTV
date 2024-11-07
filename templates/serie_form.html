@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container mt-5" style="background-color: rgba(255,255,255,0.6); border-radius: 5px;">
+        <h2 class="mb-4 text-black">{% if form.instance.id %}Editar{% else %}Crear{% endif %} Serie</h2>
+
+    <form method="post" enctype="multipart/form-data" class="my-form">
+
+      {% csrf_token %}
+
+      <div class="mb-3">
+        <label for="{{ form.nombre.id_for_label }}" class="form-label text-black">Nombre de la serie:</label>
+        {{ form.nombre }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.genero.id_for_label }}" class="form-label text-black">Género:</label>
+        {{ form.genero }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.clasificacion.id_for_label }}" class="form-label text-black">Clasificación:</label>
+        {{ form.clasificacion }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.año.id_for_label }}" class="form-label text-black">Año de publicación:</label>
+        {{ form.año }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.temporadas.id_for_label }}" class="form-label text-black">Número de temporadas:</label>
+        {{ form.temporadas }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.capitulos.id_for_label }}" class="form-label text-black">Número de capítulos:</label>
+        {{ form.capitulos }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.resena.id_for_label }}" class="form-label text-black">Reseña:</label>
+        {{ form.resena }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.imagen.id_for_label }}" class="form-label text-black">Imagen de la serie (URL):</label>
+        {{ form.imagen }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.imagenbanner.id_for_label }}" class="form-label text-black">Banner de la imagen (URL):</label>
+        {{ form.imagenbanner }}
+      </div>
+
+      <div class="mb-3">
+        <label for="{{ form.imagenname.id_for_label }}" class="form-label text-black">Nombre del archivo de la imagen (URL):</label>
+        {{ form.imagenname }}
+      </div>
+
+      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+      <br>
+      <a href="{% url 'pagina_principal' %}" class="btn btn-secondary mt-3">Volver al Listado de Series</a>
+      <br>
+      <br>
+
+      {% if form.errors %}
+        <div class="alert alert-danger mt-3" role="alert">
+          <strong class="text-black">Por favor, corrija los siguientes errores en el formulario:</strong>
+          <ul class="text-black">
+            {% for field, errors in form.errors.items %}
+              {% for error in errors %}
+                <li>{{ field|title }}: {{ error }}</li>
+              {% endfor %}
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+    </form>
+  </div>
+  <br><br>
+{% endblock %}

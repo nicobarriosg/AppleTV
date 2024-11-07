@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<style>
+  /* En tu archivo styles.css */
+  .card {
+    height: 550px;
+    width: 300px;
+    transition: transform 0.3s ease; /* Agregamos una transición a la propiedad transform */
+  }
+
+  .card:hover {
+    transform: scale(1.05); /* Escalamos el card al hacer hover */
+  }
+
+  .card img {
+    max-height: 100%;
+  }
+
+  .card-body {
+    text-align: center;
+  }
+
+  .card-body h5 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card-body .btn {
+    width: 100%;
+    margin-top: 10px;
+  }
+</style>
+
+<div class="container mt-5"><h2 style="color: white;">Peliculas</h2></div>
+
+<!-- mi_app/templates/mi_app/peliculas_list.html -->
+<div class="row">
+  {% for pelicula in peliculas %}
+      <div class="col-md-4 mb-4">  <!-- Aumenta el tamaño de la columna para hacer que las imágenes sean más grandes -->
+          <div class="image-container">
+              <a href="{% url 'pelicula-detail' pelicula.pk %}">
+                <img src="{{ pelicula.imagen }}" alt="{{ pelicula.nombre }}" class="img-fluid" style="margin-bottom: 20px;">
+              </a>
+          </div>
+      </div>
+  {% endfor %}
+</div>
+
+{% endblock %}
+
+

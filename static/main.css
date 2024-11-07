@@ -1,0 +1,122 @@
+@font-face {
+    font-family: 'apple';
+    src: url('../media/font/MYRIADPRO-BOLD.OTF') format('truetype');
+}
+
+.titulosCarrusel {
+    font-family: 'apple', sans-serif;
+    color: #ffffff;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1.23;
+}
+
+.videoBanner {
+    position: relative; /* Necesario para que los elementos hijos con posición absoluta se posicionen dentro */
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    display: flex; /* Utiliza flexbox para centrar el contenido */
+    justify-content: center; /* Centra el video horizontalmente */
+    align-items: center; /* Centra el video verticalmente (si es necesario) */
+}
+
+.videoBanner video {
+    max-width: 88%; /* Ajusta el tamaño del video para hacer espacio al texto */
+    max-height: 88%;
+    width: auto;
+    height: auto;
+}
+
+.videoLogoLink {
+    position: absolute; /* Posiciona el logo dentro del contenedor del video */
+    top: 20px; /* Ubica el logo a 20px de la parte superior del contenedor */
+    left: 200px; /* Ubica el logo a 20px de la parte izquierda del contenedor */
+    z-index: 3; /* Asegura que el logo esté sobre el video */
+}
+
+.videoLogo {
+    width: 120px; /* Ajusta el tamaño del logo según tus necesidades */
+    height: auto; /* Mantiene la proporción del logo */
+    fill: #ffffff; /* Cambia el color del logo, si es necesario */
+}
+
+.videoText {
+    position: absolute; /* Posiciona el texto dentro del contenedor del video */
+    top: 80%;
+    left: 10%;
+    color: #ffffff;
+    max-width: 35%; /* Ajusta el ancho del texto */
+    text-align: left;
+    z-index: 2; /* Asegura que el texto esté sobre el video */
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.freeTrialButton {
+    background-color: #ffffff;
+    color: #000;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.freeTrialButton:hover {
+    background-color: #e0e0e0;
+}
+
+.smallText {
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+.videoControls {
+    position: absolute;
+    bottom: 20px;
+    right: 140px;
+    display: flex;
+    gap: 10px;
+    z-index: 2; /* Asegura que los controles también estén sobre el video */
+}
+
+.videoControls button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.videoControls button:focus,
+.videoControls button:active {
+    outline: none;
+    border: none;
+}
+
+.videoControls img {
+    width: 24px;
+    height: 24px;
+    filter: invert(1);
+}
+
+.videoControls img:focus,
+.videoControls img:active {
+    outline: none;
+    border: none;
+}
