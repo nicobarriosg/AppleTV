@@ -13,43 +13,43 @@
 }
 
 .videoBanner {
-    position: relative; /* Necesario para que los elementos hijos con posición absoluta se posicionen dentro */
+    position: relative; 
     width: 100%;
     box-sizing: border-box;
     margin-bottom: 20px;
-    display: flex; /* Utiliza flexbox para centrar el contenido */
-    justify-content: center; /* Centra el video horizontalmente */
-    align-items: center; /* Centra el video verticalmente (si es necesario) */
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
 }
 
 .videoBanner video {
-    max-width: 88%; /* Ajusta el tamaño del video para hacer espacio al texto */
+    max-width: 88%; 
     max-height: 88%;
     width: auto;
     height: auto;
 }
 
 .videoLogoLink {
-    position: absolute; /* Posiciona el logo dentro del contenedor del video */
-    top: 20px; /* Ubica el logo a 20px de la parte superior del contenedor */
-    left: 200px; /* Ubica el logo a 20px de la parte izquierda del contenedor */
-    z-index: 3; /* Asegura que el logo esté sobre el video */
+    position: absolute; 
+    top: 20px; 
+    left: 200px; 
+    z-index: 3; 
 }
 
 .videoLogo {
-    width: 120px; /* Ajusta el tamaño del logo según tus necesidades */
-    height: auto; /* Mantiene la proporción del logo */
-    fill: #ffffff; /* Cambia el color del logo, si es necesario */
+    width: 120px;
+    height: auto;
+    fill: #ffffff; 
 }
 
 .videoText {
-    position: absolute; /* Posiciona el texto dentro del contenedor del video */
+    position: absolute; 
     top: 80%;
     left: 10%;
     color: #ffffff;
-    max-width: 35%; /* Ajusta el ancho del texto */
+    max-width: 35%; 
     text-align: left;
-    z-index: 2; /* Asegura que el texto esté sobre el video */
+    z-index: 2; 
 }
 
 .title {
@@ -90,7 +90,7 @@
     right: 140px;
     display: flex;
     gap: 10px;
-    z-index: 2; /* Asegura que los controles también estén sobre el video */
+    z-index: 2; 
 }
 
 .videoControls button {

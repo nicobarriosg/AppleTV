@@ -4,16 +4,18 @@
 
     {% if serie.imagenbanner %}
     <div class="header-image" style="position: relative; height: 900px; width: 100%; overflow: hidden; text-align: center;">
-        <!-- Imagen en formato <img> para mejor control del tamaño -->
+
+<!----------------------------------- IMAGEN BANNER ----------------------------------->
         <img src="{{ serie.imagenbanner }}" alt="Imagen de la serie" style="width: 90%; height: 100%; object-fit: cover; object-position: center; margin: 0 auto;">
         
+<!----------------------------------- IMAGEN DEL NOMBRE ----------------------------------->
         {% if serie.imagenname %}
         <img src="{{ serie.imagenname }}" alt="Nombre de la imagen" style="position: absolute; top: 20px; left: 170px; max-width: 200%; width: auto; height: auto;">
         {% endif %}
         
-        <!-- Capa con el degradado oscuro ajustada a la imagen -->
         <div style="position: absolute; bottom: 0; left: 5%; width: 90%; height: 100%; background: linear-gradient(to top, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)); pointer-events: none;"></div>
 
+<!----------------------------------- CONTENT PELICULA ----------------------------------->
         <div class="text-and-buttons" style="position: absolute; bottom: 20px; left: 10%; display: flex; align-items: flex-start; gap: 20px;">
             <div class="buttons-container" style="display: flex; flex-direction: column; gap: 10px;">
                 <button class="btn btn-light" style="width: 300px;">Empezar a ver</button>
@@ -26,7 +28,8 @@
                 <div class="info-text" style="margin-top: 10px;">
                     {{ serie.get_genero_display }} |
                     {{ serie.año }} |
-                    {{ serie.duracion }} min |
+                    {{ serie.temporadas }} Temp |
+                    {{ serie.capitulos }} Caps |
                     {{ serie.get_clasificacion_display }}
                 </div>
             </div>
@@ -36,6 +39,7 @@
     <p class="mb-4">No hay imagen disponible.</p>
     {% endif %}
 
+<!----------------------------------- BOTONES ADMIN ----------------------------------->
     <div class="container mt-5" style="margin-left: 10%; margin-bottom: 50px;">
         <a href="{% url 'editar-serie' id=serie.id %}" class="btn btn-light" style="margin-right: 10px;">Editar</a>
         <a href="{% url 'eliminar-serie' id=serie.id %}" class="btn btn-outline-danger" style="margin-right: 10px;"

@@ -1,8 +1,9 @@
 {% load static %}
+
 <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
 
 <div style="width: 85%; margin: 0 auto;">
-    <!-- Carrusel de Series de Drama -->
+<!-- Carrusel de Series de Drama -->
     <div class="container-fluid mt-5">
         <h2 class="titulosCarrusel">Series de Drama</h2>
         <div id="serieCarousel" class="carousel slide w-100" data-ride="carousel">
@@ -12,20 +13,20 @@
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
                             <div class="d-flex justify-content-around w-100">
                     {% endif %}
-    
+
                     <div class="col-md-3">
-                        <a href="{% url 'serie-detail' serie.id %}">
+                        <a href="{{ serie.get_absolute_url }}">
                             <img src="{{ serie.imagen }}" class="d-block w-100 img-fluid" alt="{{ serie.nombre }}" style="height: auto; object-fit: cover; margin: 10px; border-radius: 15px;">
                         </a>
                     </div>
-    
+
                     {% if forloop.counter|divisibleby:"4" or forloop.last %}
                             </div>
                         </div>
                     {% endif %}
                 {% endfor %}
             </div>
-    
+
             <a class="carousel-control-prev" href="#serieCarousel" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
@@ -50,7 +51,7 @@
                     {% endif %}
 
                     <div class="col-md-3">
-                        <a href="{% if item.tipo == 'Pelicula' %}{% url 'pelicula-detail' item.id %}{% else %}{% url 'serie-detail' item.id %}{% endif %}">
+                        <a href="{{ item.get_absolute_url }}">
                             <img src="{{ item.imagen }}" class="d-block w-100 img-fluid" alt="{{ item.nombre }}" style="height: auto; object-fit: cover; margin: 10px; border-radius: 15px;">
                         </a>
                     </div>
@@ -73,8 +74,7 @@
         </div>
     </div>
 
-
-    <!-- Carrusel de Documentales -->
+<!-- Carrusel de Documentales -->
     <div class="container-fluid mt-5">
         <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
         <h2 class="titulosCarrusel">Nuestro Asombroso Planeta</h2>
@@ -87,7 +87,7 @@
                     {% endif %}
 
                     <div class="col-md-3">
-                        <a href="{% url 'pelicula-detail' documental.id %}">
+                        <a href="{{ documental.get_absolute_url }}">
                             <img src="{{ documental.imagen }}" class="d-block w-100 img-fluid" alt="{{ documental.nombre }}" style="height: auto; object-fit: cover; margin: 10px; border-radius: 15px;">
                         </a>
                     </div>
@@ -110,7 +110,7 @@
         </div>
     </div>
 
-    <!-- Carrusel de Todas las Películas -->
+<!-- Carrusel de Todas las Películas -->
     <div class="container-fluid mt-5">
         <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
         <h2 class="titulosCarrusel">Todas las Películas</h2>
@@ -123,7 +123,7 @@
                     {% endif %}
 
                     <div class="col-md-3">
-                        <a href="{% url 'pelicula-detail' pelicula.id %}">
+                        <a href="{{ pelicula.get_absolute_url }}">
                             <img src="{{ pelicula.imagen }}" class="d-block w-100 img-fluid" alt="{{ pelicula.nombre }}" style="height: auto; object-fit: cover; margin: 10px; border-radius: 15px;">
                         </a>
                     </div>
@@ -146,7 +146,7 @@
         </div>
     </div>
 
-    <!-- Carrusel de Comedia: Todas las Series -->
+<!-- Carrusel de Comedia: Todas las Series -->
     <div class="container-fluid mt-5">
         <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
         <h2 class="titulosCarrusel">Comedia: Todas las Series</h2>
@@ -159,7 +159,7 @@
                     {% endif %}
 
                     <div class="col-md-3">
-                        <a href="{% url 'serie-detail' serie.id %}">
+                        <a href="{{ serie.get_absolute_url }}">
                             <img src="{{ serie.imagen }}" class="d-block w-100 img-fluid" alt="{{ serie.nombre }}" style="height: auto; object-fit: cover; margin: 10px; border-radius: 15px;">
                         </a>
                     </div>
@@ -182,7 +182,7 @@
         </div>
     </div>
 
-    <!-- Carrusel de No Ficción: Todas las Series -->
+<!-- Carrusel de No Ficción: Todas las Series -->
     <div class="container-fluid mt-5">
         <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
         <h2 class="titulosCarrusel">No Ficción: Todas las Series</h2>
@@ -195,7 +195,7 @@
                     {% endif %}
 
                     <div class="col-md-3">
-                        <a href="{% url 'serie-detail' serie.id %}">
+                        <a href="{{ serie.get_absolute_url }}">
                             <img src="{{ serie.imagen }}" class="d-block w-100 img-fluid" alt="{{ serie.nombre }}" style="height: auto; object-fit: cover; margin: 10px; border-radius: 15px;">
                         </a>
                     </div>
@@ -218,7 +218,7 @@
         </div>
     </div>
 
-    <!-- Carrusel de Todo para Toda la Familia -->
+<!-- Carrusel de Todo para Toda la Familia -->
     <div class="container-fluid mt-5">
         <div style="border-top: 2px solid rgba(235, 235, 245, 0.19); margin: 20px 0; width: 100%;"></div>
         <h2 class="titulosCarrusel">Todo para Toda la Familia</h2>
@@ -231,7 +231,7 @@
                     {% endif %}
 
                     <div class="col-md-3">
-                        <a href="{% url 'pelicula-detail' item.id %}">
+                        <a href="{{ item.get_absolute_url }}">
                             <img src="{{ item.imagen }}" class="d-block w-100 img-fluid" alt="{{ item.nombre }}" style="height: auto; object-fit: cover; margin: 10px; border-radius: 15px;">
                         </a>
                     </div>
